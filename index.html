@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Struk Pembayaran</title>
+    <title>Resit Pembayaran</title>
     <style>
         body {
             font-family: 'Courier New', monospace;
@@ -52,7 +52,7 @@
     <h2>Form Struk Pembayaran</h2>
     <form id="formData">
         <input type="text" id="idTransaksi" placeholder="ID Transaksi" required>
-        <input type="number" id="hargaAdmin" placeholder="Harga Admin" required>
+        <input type="number" id="hargaAdmin" placeholder="Fee Admin" required>
         <input type="text" id="nomorTujuan" placeholder="Nomor Tujuan" required>
         <input type="text" id="namaBarang" placeholder="Nama Barang">
         <input type="number" id="hargaBarang" placeholder="Harga">
@@ -63,7 +63,7 @@
 
     <button onclick="buatStruk()">Buat Struk</button>
     <button onclick="resetForm()">Reset</button>
-    <button onclick="cetakGambar()">Cetak Gambar</button>
+    <button onclick="cetakGambar()">Download Gambar</button>
 
     <canvas id="canvas"></canvas>
 
