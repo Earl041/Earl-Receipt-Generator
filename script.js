@@ -136,7 +136,7 @@ function resetForm() {
 function cetakGambar() {
     const canvas = document.getElementById("canvas");
     const link = document.createElement("a");
-    link.download = "struk-pembayaran.png";
+    link.download = "Resit-pembayaran.png";
     link.href = canvas.toDataURL("image/png");
     link.click();
 }
