@@ -36,8 +36,9 @@ function buatStruk() {
     const hargaAdmin = parseInt(document.getElementById("hargaAdmin").value);
     const nomorTujuan = document.getElementById("nomorTujuan").value;
 
-    if (!idTransaksi || !hargaAdmin || !nomorTujuan || barangList.length === 0) {
-        alert("Lengkapi semua data sebelum membuat struk!");
+    // Hanya alert jika barang daftar kosong
+    if (barangList.length === 0) {
+        alert("Tambahkan barang terlebih dahulu sebelum membuat struk!");
         return;
     }
 
