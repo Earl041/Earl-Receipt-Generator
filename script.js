@@ -136,21 +136,38 @@ function resetForm() {
 function cetakGambar() {
     const canvas = document.getElementById("canvas");
 
-    // Tambahkan pustaka jsPDF melalui CDN
+    // Muatkan pustaka jsPDF melalui CDN
     const script = document.createElement("script");
     script.src = "https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js";
     script.onload = () => {
         const { jsPDF } = window.jspdf;
 
-        // Konversi kanvas ke imej
-        const imgData = canvas.toDataURL("image/png");
-        
-        // Buat dokumen PDF
-        const pdf = new jsPDF();
+        // Dapatkan ukuran asli kanvas
+        const canvasWidth = canvas.width;
+        const canvasHeight = canvas.height;
 
-        // Tambahkan imej ke dalam PDF
-        pdf.addImage(imgData, "PNG", 10, 10, 180, 160); // Sesuaikan ukuran di sini
-        
+        // Tentukan ukuran PDF (A4 - 210mm x 297mm)
+        const pdf = new jsPDF({
+            orientation: "portrait",
+            unit: "mm",
+            format: "a4",
+        });
+        const pageWidth = pdf.internal.pageSize.getWidth();
+        const pageHeight = pdf.internal.pageSize.getHeight();
+
+        // Hitung skala untuk menjaga proporsi
+        const scale = Math.min(pageWidth / canvasWidth, pageHeight / canvasHeight);
+        const imgWidth = canvasWidth * scale;
+        const imgHeight = canvasHeight * scale;
+
+        // Konversi kanvas menjadi data URL
+        const imgData = canvas.toDataURL("image/png");
+
+        // Tambahkan gambar dengan proporsi yang benar
+        const x = (pageWidth - imgWidth) / 2; // Pusatkan gambar secara horizontal
+        const y = (pageHeight - imgHeight) / 2; // Pusatkan gambar secara vertikal
+        pdf.addImage(imgData, "PNG", x, y, imgWidth, imgHeight);
+
         // Muat turun PDF
         pdf.save("Resit-pembayaran.pdf");
     };
