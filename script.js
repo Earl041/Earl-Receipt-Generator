@@ -59,7 +59,7 @@ function buatStruk() {
     const canvas = document.getElementById("canvas");
     const ctx = canvas.getContext("2d");
     canvas.width = 350;
-    canvas.height = 550 + barangList.length * 40;
+    canvas.height = 650 + barangList.length * 40;
 
     ctx.fillStyle = "#fff";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
