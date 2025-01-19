@@ -19,13 +19,13 @@ Website sederhana untuk membuat dan mencetak struk pembayaran digital. Website i
 ## Live Demo 🌐
 
 Kunjungi Halaman Website Ini
-[Demo Website](https://receipt-generator.flowfalcon.xyz)
+[Demo Website](https://earl041.github.io/Earl-Receipt-Generator-/)
 
 ## 💻 Cara Penggunaan
 
 1. Clone repository ini:
    ```bash
-   git clone https://github.com/FlowFalcon/Receipts-Generator.git
+   git clone https://github.com/Earl041/Earl-Receipt-Generator
    ```
 2. Buka File `script.js` di visual code
 
@@ -63,4 +63,4 @@ Receipts-Generator/
 Jika Anda merasa proyek ini bermanfaat, berikan bintang di GitHub! ⭐
 
 ---
-Made with ❤️ by [FlowFalcon](https://flowfalcon.xyz)
+Made with ❤️ by [Earl](tiktok.com/@earllyzer)
