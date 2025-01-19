@@ -79,7 +79,7 @@ function buatStruk() {
     let y = 80;
     ctx.fillText(`ID Transaksi: ${idTransaksi}`, 20, y);
     y += 20;
-    ctx.fillText(`Nomor/Nama Pembeli: ${nomorTujuan}`, 20, y);
+    ctx.fillText(`Nombor/Nama Pembeli: ${nomorTujuan}`, 20, y);
     y += 20;
 
     // Separator
