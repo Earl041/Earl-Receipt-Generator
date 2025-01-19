@@ -142,31 +142,18 @@ function cetakGambar() {
     script.onload = () => {
         const { jsPDF } = window.jspdf;
 
-        // Dapatkan ukuran asli kanvas
-        const canvasWidth = canvas.width;
-        const canvasHeight = canvas.height;
-
-        // Tentukan ukuran PDF (A4 - 210mm x 297mm)
+        // Buat PDF baru
         const pdf = new jsPDF({
             orientation: "portrait",
-            unit: "mm",
-            format: "a4",
+            unit: "px", // Gunakan pixel agar konsisten dengan ukuran kanvas
+            format: [canvas.width, canvas.height], // Pastikan ukuran sama dengan kanvas
         });
-        const pageWidth = pdf.internal.pageSize.getWidth();
-        const pageHeight = pdf.internal.pageSize.getHeight();
 
-        // Hitung skala untuk menjaga proporsi
-        const scale = Math.min(pageWidth / canvasWidth, pageHeight / canvasHeight);
-        const imgWidth = canvasWidth * scale;
-        const imgHeight = canvasHeight * scale;
-
-        // Konversi kanvas menjadi data URL
+        // Ambil data gambar dari kanvas
         const imgData = canvas.toDataURL("image/png");
 
-        // Tambahkan gambar dengan proporsi yang benar
-        const x = (pageWidth - imgWidth) / 2; // Pusatkan gambar secara horizontal
-        const y = (pageHeight - imgHeight) / 2; // Pusatkan gambar secara vertikal
-        pdf.addImage(imgData, "PNG", x, y, imgWidth, imgHeight);
+        // Tambahkan gambar ke PDF tanpa mengubah ukuran
+        pdf.addImage(imgData, "PNG", 0, 0, canvas.width, canvas.height);
 
         // Muat turun PDF
         pdf.save("Resit-pembayaran.pdf");
