@@ -135,8 +135,24 @@ function resetForm() {
 
 function cetakGambar() {
     const canvas = document.getElementById("canvas");
-    const link = document.createElement("a");
-    link.download = "Resit-pembayaran.pdf";
-    link.href = canvas.toDataURL("image/png");
-    link.click();
+
+    // Tambahkan pustaka jsPDF melalui CDN
+    const script = document.createElement("script");
+    script.src = "https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js";
+    script.onload = () => {
+        const { jsPDF } = window.jspdf;
+
+        // Konversi kanvas ke imej
+        const imgData = canvas.toDataURL("image/png");
+        
+        // Buat dokumen PDF
+        const pdf = new jsPDF();
+
+        // Tambahkan imej ke dalam PDF
+        pdf.addImage(imgData, "PNG", 10, 10, 180, 160); // Sesuaikan ukuran di sini
+        
+        // Muat turun PDF
+        pdf.save("Resit-pembayaran.pdf");
+    };
+    document.body.appendChild(script);
 }
