@@ -1,6 +1,6 @@
 let barangList = [];
-const namaToko = "FlowFalcon";
-const footerText = `TERIMA KASIH TELAH BELANJA Di\n${namaToko}`;
+const namaToko = "EarlStore";
+const footerText = `TERIMA KASIH TELAH MEMBELI BELAH Di\n${namaToko}`;
 
 function tambahBarang() {
     const namaBarang = document.getElementById("namaBarang").value;
@@ -21,9 +21,14 @@ function tambahBarang() {
 function updateBarangList() {
     let barangHTML = `<h4>Daftar Barang:</h4>`;
     barangList.forEach((item, index) => {
-        barangHTML += `<p>${index + 1}. ${item.nama} - Rp${item.harga}</p>`;
+        barangHTML += `<p>${index + 1}. ${item.nama} - RM${formatHarga(item.harga)}</p>`;
     });
     document.getElementById("barangList").innerHTML = barangHTML;
+}
+
+// Fungsi untuk memformat harga menjadi dua desimal
+function formatHarga(harga) {
+    return (harga / 100).toFixed(2);
 }
 
 function buatStruk() {
@@ -73,7 +78,7 @@ function buatStruk() {
     let y = 80;
     ctx.fillText(`ID Transaksi: ${idTransaksi}`, 20, y);
     y += 20;
-    ctx.fillText(`Nomor Tujuan: ${nomorTujuan}`, 20, y);
+    ctx.fillText(`Nomor/Nama Pembeli: ${nomorTujuan}`, 20, y);
     y += 20;
 
     // Separator
@@ -88,7 +93,7 @@ function buatStruk() {
 
     // Daftar barang dengan space antar barang
     barangList.forEach((item, index) => {
-        ctx.fillText(`${index + 1}. ${item.nama} - Rp${item.harga}`, 20, y);
+        ctx.fillText(`${index + 1}. ${item.nama} - RM${formatHarga(item.harga)}`, 20, y);
         y += 40; // Space lebih besar antar barang
     });
 
@@ -101,11 +106,11 @@ function buatStruk() {
     y += 30;
 
     // Total dan admin
-    ctx.fillText(`Total: Rp${totalHarga}`, 20, y);
+    ctx.fillText(`Total: RM${formatHarga(totalHarga)}`, 20, y);
     y += 20;
-    ctx.fillText(`Admin: Rp${hargaAdmin}`, 20, y);
+    ctx.fillText(`Fee: RM${formatHarga(hargaAdmin)}`, 20, y);
     y += 20;
-    ctx.fillText(`Total Keseluruhan: Rp${totalKeseluruhan}`, 20, y);
+    ctx.fillText(`Total Keseluruhan: RM${formatHarga(totalKeseluruhan)}`, 20, y);
 
     // Footer
     y += 40;
