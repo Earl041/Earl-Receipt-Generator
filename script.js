@@ -58,7 +58,7 @@ function buatStruk() {
     // Gambar struk di canvas
     const canvas = document.getElementById("canvas");
     const ctx = canvas.getContext("2d");
-    canvas.width = 300;
+    canvas.width = 200;
     canvas.height = 650 + barangList.length * 40;
 
     ctx.fillStyle = "#fff";
