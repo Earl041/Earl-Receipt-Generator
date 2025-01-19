@@ -47,13 +47,13 @@ function buatStruk() {
 
     // Tanggal dan waktu
     const now = new Date();
-    const tanggalCetak = now.toLocaleDateString("id-ID", {
+    const tanggalCetak = now.toLocaleDateString("ms-MY", {
         weekday: "long",
         year: "numeric",
         month: "long",
         day: "numeric"
     });
-    const waktuCetak = now.toLocaleTimeString("id-ID");
+    const waktuCetak = now.toLocaleTimeString("ms-MY");
 
     // Gambar struk di canvas
     const canvas = document.getElementById("canvas");
