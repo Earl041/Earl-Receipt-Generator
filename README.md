@@ -19,7 +19,7 @@ Website sederhana untuk membuat dan mencetak struk pembayaran digital. Website i
 ## Live Demo 🌐
 
 Kunjungi Halaman Website Ini
-[Demo Website](https://earl041.github.io/Earl-Receipt-Generator-/)
+[Demo Website](https://earl041.github.io/Earl-Receipt-Generator/)
 
 ## 💻 Cara Penggunaan
 
