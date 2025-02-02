@@ -135,28 +135,42 @@ function resetForm() {
 
 function cetakGambar() {
     const canvas = document.getElementById("canvas");
+    const ctx = canvas.getContext("2d");
 
-    // Muatkan pustaka jsPDF melalui CDN
-    const script = document.createElement("script");
-    script.src = "https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js";
-    script.onload = () => {
-        const { jsPDF } = window.jspdf;
+    // Tetapkan URL gambar latar di sini
+    const backgroundURL = "https://files.catbox.moe/s4vauj.jpg"; // Gantikan dengan URL gambar sebenar
 
-        // Buat PDF baru
-        const pdf = new jsPDF({
-            orientation: "portrait",
-            unit: "px", // Gunakan pixel agar konsisten dengan ukuran kanvas
-            format: [canvas.width, canvas.height], // Pastikan ukuran sama dengan kanvas
-        });
+    // Buat objek imej untuk latar
+    const bgImage = new Image();
+    bgImage.crossOrigin = "anonymous"; // Jika perlu untuk mengelakkan isu CORS
+    bgImage.src = backgroundURL;
 
-        // Ambil data gambar dari kanvas
-        const imgData = canvas.toDataURL("image/png");
+    bgImage.onload = function() {
+        // Lukis gambar latar ke canvas dengan memotong jika lebih besar
+        ctx.drawImage(bgImage, 0, 0, canvas.width, canvas.height);
 
-        // Tambahkan gambar ke PDF tanpa mengubah ukuran
-        pdf.addImage(imgData, "PNG", 0, 0, canvas.width, canvas.height);
+        // Muatkan pustaka jsPDF melalui CDN
+        const script = document.createElement("script");
+        script.src = "https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js";
+        script.onload = () => {
+            const { jsPDF } = window.jspdf;
 
-        // Muat turun PDF
-        pdf.save("Resit-pembayaran.pdf");
+            // Buat PDF baru dengan saiz yang sama seperti canvas
+            const pdf = new jsPDF({
+                orientation: "portrait",
+                unit: "px",
+                format: [canvas.width, canvas.height],
+            });
+
+            // Ambil data gambar dari canvas
+            const imgData = canvas.toDataURL("image/png");
+
+            // Tambahkan gambar ke PDF tanpa mengubah ukuran
+            pdf.addImage(imgData, "PNG", 0, 0, canvas.width, canvas.height);
+
+            // Muat turun PDF
+            pdf.save("Resit-pembayaran.pdf");
+        };
+        document.body.appendChild(script);
     };
-    document.body.appendChild(script);
 }
